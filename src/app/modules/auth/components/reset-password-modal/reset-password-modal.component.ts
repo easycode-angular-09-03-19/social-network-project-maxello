@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Auth } from '../../interfaces/LoginServerAnswer';
 
 @Component({
   selector: 'app-reset-password-modal',
@@ -10,7 +13,10 @@ export class ResetPasswordModalComponent implements OnInit {
   @Output('modalClose') modalCloseEvent = new EventEmitter();
   resetPasswordForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.resetPasswordForm = new FormGroup({
@@ -18,12 +24,20 @@ export class ResetPasswordModalComponent implements OnInit {
     });
   }
 
-  closeModal(event) {
+  closeModal() {
     this.modalCloseEvent.emit();
   }
 
   onSubmit() {
-    // вызвать метод сброса пароля из сервиса auth
-    // вызывать метод closeModal
+    if(this.resetPasswordForm.valid){
+      this.authService.resetPassword({ ...this.resetPasswordForm.value }).subscribe((res: Auth.ResetPasswordAnswer) => {
+        if (!res.error) {
+          this.toastr.success(res.message, 'Success!');
+          this.closeModal();
+        }
+      }, (res) => {
+        this.toastr.error(res.error.message, 'Error!');
+      });
+    }
   }
 }

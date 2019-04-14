@@ -3,11 +3,15 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
-import { LoginServerAnswer } from "../interfaces/LoginServerAnswer";
+import { Auth } from "../interfaces/LoginServerAnswer";
 
 interface LoginCred {
   email: string;
   password: string;
+}
+
+interface ResetPasswordCred {
+  email: string;
 }
 
 @Injectable()
@@ -17,14 +21,18 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
-  login(cred: LoginCred): Observable<LoginServerAnswer> {
-    return this.http.post<LoginServerAnswer>(`${this.apiUrl}/public/auth/login`, cred).pipe(
-      map((res: LoginServerAnswer): LoginServerAnswer => {
+  login(cred: LoginCred): Observable<Auth.LoginServerAnswer> {
+    return this.http.post<Auth.LoginServerAnswer>(`${this.apiUrl}/public/auth/login`, cred).pipe(
+      map((res: Auth.LoginServerAnswer): Auth.LoginServerAnswer => {
         if (!res.error) {
           localStorage.setItem('sn_app_token', res.token);
         }
         return res;
       })
     );
+  }
+
+  resetPassword(cred: ResetPasswordCred): Observable<Auth.ResetPasswordAnswer> {
+    return this.http.post<Auth.ResetPasswordAnswer>(`${this.apiUrl}/public/auth/reset-password`, cred);
   }
 }
