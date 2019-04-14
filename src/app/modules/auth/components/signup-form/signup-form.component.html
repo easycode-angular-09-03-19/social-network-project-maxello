@@ -1,0 +1,39 @@
+<form
+[formGroup]="signUpForm"
+(ngSubmit)="onSubmit()"
+>
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      placeholder="First name"
+      formControlName="firstName"
+    >
+    <mat-error *ngIf="signUpForm.get('firstName').hasError('required')">
+      First name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      placeholder="Password"
+      formControlName="password"
+    >
+  </mat-form-field>
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      placeholder="Repeat Password"
+      formControlName="repeatPassword"
+    >
+    <mat-error *ngIf="signUpForm.get('repeatPassword').hasError('required')">
+      First name is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpForm.hasError('notEqual')">
+      First name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <p *ngIf="signUpForm.hasError('notEqual')">
+    Password not equal
+  </p>
+  <button mat-raised-button color="primary" class="submit-btn">Signup</button>
+</form>

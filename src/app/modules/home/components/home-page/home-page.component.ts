@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalAuthService } from 'src/app/services/global-auth.service';
+import { GlobalAuthService } from '../../../../services/global-auth.service';
 
 @Component({
   selector: 'app-home-page',
