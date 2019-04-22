@@ -5,6 +5,7 @@ import { Auth } from '../../interfaces/Auth';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { GlobalAuthService } from 'app/services/global-auth.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -17,10 +18,12 @@ export class SignupFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private globalAuth: GlobalAuthService
   ) { }
 
   ngOnInit() {
+    this.globalAuth.isLogin ? this.router.navigate(['/']) : null;
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       nickname: ['', Validators.required],
