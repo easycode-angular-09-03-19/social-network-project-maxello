@@ -1,8 +1,15 @@
 import { AbstractControl } from "@angular/forms";
 
-export function passwordEqual(form: AbstractControl): { [key: string] : any } | null {
-  console.log(form);
-  const areEqual = form.value.password === form.value.repeatPassword;
-  console.log(areEqual)
-  return !areEqual ? { notEqual: true } : null;
+
+export function ConfirmPasswordValidator(control: AbstractControl): { [key: string] : any } | null {
+  let password = control.get('password').value;
+
+     let confirmPassword = control.get('confirmPassword').value;
+
+      if (password != confirmPassword) {
+          control.get('confirmPassword').setErrors({ConfirmPassword: true});
+      } else {
+          return null
+      }
 }
+

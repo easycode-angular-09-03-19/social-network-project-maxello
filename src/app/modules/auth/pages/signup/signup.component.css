@@ -1,0 +1,19 @@
+.signup-form-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto;
+}
+
+.submit-btn {
+    margin-top: 30px;
+}
+
+.signup-card .mat-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.signup-card .mat-card-header .mat-card-title {
+    margin: 0;
+}

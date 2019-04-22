@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { Auth } from '../../interfaces/LoginServerAnswer';
+import { Auth } from '../../interfaces/Auth';
 
 @Component({
   selector: 'app-reset-password-modal',
@@ -29,7 +29,7 @@ export class ResetPasswordModalComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.resetPasswordForm.valid){
+    if (this.resetPasswordForm.valid) {
       this.authService.resetPassword({ ...this.resetPasswordForm.value }).subscribe((res: Auth.ResetPasswordAnswer) => {
         if (!res.error) {
           this.toastr.success(res.message, 'Success!');

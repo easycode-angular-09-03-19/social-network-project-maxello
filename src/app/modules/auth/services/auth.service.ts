@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
-import { Auth } from "../interfaces/LoginServerAnswer";
+import { Auth } from "../interfaces/Auth";
 
 interface LoginCred {
   email: string;
@@ -34,5 +34,9 @@ export class AuthService {
 
   resetPassword(cred: ResetPasswordCred): Observable<Auth.ResetPasswordAnswer> {
     return this.http.post<Auth.ResetPasswordAnswer>(`${this.apiUrl}/public/auth/reset-password`, cred);
+  }
+
+  signup(cred: Auth.SignupData): Observable<Auth.SignupAnswer> {
+    return this.http.post<Auth.SignupAnswer>(`${this.apiUrl}/public/auth/signup`, cred);
   }
 }

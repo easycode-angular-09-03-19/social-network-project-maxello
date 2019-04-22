@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { passwordEqual } from '@helpers/validators';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ConfirmPasswordValidator } from '../../../../helpers/validators';
+import { Auth } from '../../interfaces/Auth';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -9,16 +13,51 @@ import { passwordEqual } from '@helpers/validators';
 })
 export class SignupFormComponent implements OnInit {
   signUpForm: FormGroup;
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.signUpForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      repeatPassword: new FormControl('', Validators.required),
-    }, { validators: passwordEqual,  updateOn: 'submit' });
+    this.signUpForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      nickname: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      password: ['', Validators.required],
+      gender_orientation: ['male', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      confirmPassword: [''],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
+      date: ['', Validators.required]
+    }, { validator: ConfirmPasswordValidator });
+  }
+
+  transformFormData(form: any) {
+    form.date_of_birth_day = form.date.getDate() + '';
+    form.date_of_birth_month = form.date.getMonth() + 1 + '';
+    form.date_of_birth_year =  form.date.getFullYear() + '';
+    delete(form.date);
+
+    return form;
   }
 
   onSubmit() {
+    if(this.signUpForm.valid){
+      this.authService.signup(this.transformFormData({ ...this.signUpForm.value })).subscribe((res: Auth.LoginServerAnswer) => {
+        if (!res.error) {
+          this.toastr.success(res.message, 'Success!');
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.toastr.error(res.message, 'Error!');
+        }
+      }, (res) => {
+        this.toastr.error(res.error.message, 'Error!');
+      });
+    }
   }
+
 }
