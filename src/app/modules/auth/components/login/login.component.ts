@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.globalAuth.isLogin ? this.router.navigate(['/']) : null;
+    if (this.globalAuth.isLogin) {
+      this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
