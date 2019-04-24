@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./empty-list.component.css']
 })
 export class EmptyListComponent implements OnInit {
-  @Input() text;
+  @Input() text: string;
   constructor() { }
 
   ngOnInit() {

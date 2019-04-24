@@ -1,0 +1,27 @@
+.challenge-name {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.challenge-card {
+    height: 240px;
+}
+.challenge-card_bottom {
+    position: absolute;
+    /* height: 50px; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+}
+.challenge-card_bottom_inner {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-end;
+}
+.challenge-card_bottom_item {
+    text-align: center;
+    padding: 5px 10px;
+    /* width: 33.33%; */
+}

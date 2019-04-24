@@ -1,0 +1,15 @@
+.jumbo {
+    min-height: 786px;
+    display: flex;
+    align-items: center;
+}
+.jumbo-text {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 25px;
+    line-height: 1.5;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+}

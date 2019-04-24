@@ -12,6 +12,10 @@ import { HomeInnerComponent } from './components/home-inner/home-inner.component
 import { ChallengeCardComponent } from '../../common/components/challenge-card/challenge-card.component';
 import { ChallengesListComponent } from '../../common/components/challenges-list/challenges-list.component';
 import { EmptyListComponent } from '../../common/components/empty-list/empty-list.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { HomeInfoComponent } from './components/home-info/home-info.component';
+import { HomeJumboComponent } from './components/home-jumbo/home-jumbo.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { EmptyListComponent } from '../../common/components/empty-list/empty-lis
     HomeInnerComponent,
     ChallengeCardComponent,
     ChallengesListComponent,
-    EmptyListComponent
+    EmptyListComponent,
+    HomeInfoComponent,
+    HomeJumboComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [AuthGuard, HomeService]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { zip } from 'rxjs';
+import { HomeInfo } from '../../interfaces/home-info.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -8,7 +9,7 @@ import { zip } from 'rxjs';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  homePageData;
+  homePageData: HomeInfo;
   challenges;
   constructor(
     private homeService: HomeService

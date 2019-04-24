@@ -16,4 +16,12 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
+app-challenge-card {
+  width: 100%;
+  margin: 0 15px;
+}
+mat-grid-list {
+  margin: 0 -15px;
+}
+
 

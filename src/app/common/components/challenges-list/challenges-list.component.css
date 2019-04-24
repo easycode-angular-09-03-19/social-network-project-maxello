@@ -1,0 +1,10 @@
+.challenge-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px -10px 0;
+}
+.challenge-list > app-challenge-card {
+    width: 31.33%;
+    margin: 0 1% 2%;
+    position: relative;
+}

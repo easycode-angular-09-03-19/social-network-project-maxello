@@ -1,6 +1,7 @@
 .mat-toolbar-row, .mat-toolbar-single-row {
-    background: aquamarine;
+    background: #2b132d;
+    color: #fff;
 }
-.logout-btn {
+.logout-btn, .notification-btn {
     margin-left: auto;
 }

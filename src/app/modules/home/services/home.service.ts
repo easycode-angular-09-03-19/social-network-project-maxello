@@ -22,12 +22,4 @@ export class HomeService {
     };
     return this.http.get(`${this.apiUrl}/public/challenges/list`, httpOptions);
   }
-  getNotifications() {
-    let token = localStorage.getItem('sn_app_token');
-    return this.http.get(`${this.apiUrl}/public/users/notification`, {
-      headers: {
-        "x-access-token": token
-      }
-    });
-  }
 }

@@ -1,3 +1,18 @@
-<p>
-  challenge-card works!
-</p>
+<div class="challenge-name">{{ challenge.challenge_name }}</div>
+<div class="challenge-card" [ngStyle]="{'background-image': 'url(' + challenge.background + ')'}">
+  <div class="challenge-card_bottom">
+    <div class="challenge-card_bottom_inner">
+      <div class="challenge-card_bottom_item">
+        <div>{{ challenge.awards }}</div>
+        <div>Awards worth</div>
+      </div>
+      <div class="challenge-card_bottom_item">
+        <div>{{ challenge.end_date | date:'MMM dd, yyyy'}}</div>
+      </div>
+      <div class="challenge-card_bottom_item">
+        <div>{{ challenge.votes }}</div>
+        <div>Votes</div>
+      </div>
+    </div>
+  </div>
+</div>
