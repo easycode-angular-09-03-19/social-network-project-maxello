@@ -29,14 +29,11 @@ export class NavbarComponent implements OnInit {
       .subscribe((event) => {
         this.activatedRoute.firstChild.data.subscribe((value) => {
           this.isHidden = !!value.withoutHeader;
+          this.notificationService.getNotifications().subscribe((res: Notification[]) => {
+            this.notifications = res;
+            this.getNotificationsCount();
+          }, (res) => {});
         });
-      });
-
-      this.notificationService.getNotifications().subscribe((res: any) => {
-        this.notifications = res;
-        this.getNotificationsCount();
-      }, (res) => {
-        this.toastr.error(res.error.message, 'Error!');
       });
   }
 

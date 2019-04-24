@@ -1,23 +1,25 @@
 <mat-toolbar *ngIf="!isHidden">
     <span>Social App</span>
+    <ng-container *ngIf="notifications.length">
     <button mat-raised-button color="primary" matBadge="{{getNotificationsCount()}}" matBadgePosition="before" matBadgeColor="accent" class="notification-btn" [matMenuTriggerFor]="menu" [disabled]="!notifications.length">Show notifications</button>
-    <mat-menu #menu="matMenu">
-        <mat-list role="list">
-            <mat-list-item role="listitem" *ngFor="let notification of notifications">
-                <div class="notification-item" [ngStyle]="{'backgroung': notification.readed ? 'rgba(0, 255, 0, 0.2)' : '#fff'}">
-                    <div class="notification-avatar-wrapper">
-                        <img [src]="notification.user_creator_id.avatar" alt="">
-                    </div>
-                    <div class="notification-text-wrapper">
-                        <div class="notification-text">
-                            <strong>{{ notification.user_creator_id.full_name }}</strong>&nbsp;
-                            <span>{{ notification.message }}</span>
+        <mat-menu #menu="matMenu">
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let notification of notifications">
+                    <div class="notification-item" [ngStyle]="{'backgroung': notification.readed ? 'rgba(0, 255, 0, 0.2)' : '#fff'}">
+                        <div class="notification-avatar-wrapper">
+                            <img [src]="notification.user_creator_id.avatar" alt="">
                         </div>
-                        <div class="notification-date"></div>
+                        <div class="notification-text-wrapper">
+                            <div class="notification-text">
+                                <strong>{{ notification.user_creator_id.full_name }}</strong>&nbsp;
+                                <span>{{ notification.message }}</span>
+                            </div>
+                            <div class="notification-date"></div>
+                        </div>
                     </div>
-                </div>
-            </mat-list-item>
-        </mat-list>
-    </mat-menu>
+                </mat-list-item>
+            </mat-list>
+        </mat-menu>
+    </ng-container>
     <button mat-raised-button color="primary" class="logout-btn" (click)="onLogout()">Logout</button>
 </mat-toolbar>
