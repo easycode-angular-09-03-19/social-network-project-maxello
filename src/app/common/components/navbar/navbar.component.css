@@ -22,3 +22,7 @@
 .notification-text-wrapper {
     font-size: 13px;
 }
+.notification-btn[disabled] {
+    background: #ccc;
+    color: #6d6d6d;
+}
