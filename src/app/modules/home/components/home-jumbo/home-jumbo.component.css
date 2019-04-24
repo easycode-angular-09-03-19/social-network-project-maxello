@@ -2,6 +2,8 @@
     min-height: 786px;
     display: flex;
     align-items: center;
+    background-position: center center;
+    background-size: cover;
 }
 .jumbo-text {
     text-align: center;

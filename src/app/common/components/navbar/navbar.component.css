@@ -5,3 +5,20 @@
 .logout-btn, .notification-btn {
     margin-left: auto;
 }
+.notification-avatar-wrapper {
+    margin-right: 10px;
+}
+.notification-avatar-wrapper img {
+    width: 50px;
+    height: auto;
+    max-height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.notification-item {
+    display: flex;
+    align-items: center;
+}
+.notification-text-wrapper {
+    font-size: 13px;
+}

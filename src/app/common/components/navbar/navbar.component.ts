@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 import { GlobalAuthService } from 'app/services/global-auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from 'app/services/notification.service';
+import { Notification } from 'app/interfaces/notification.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { NotificationService } from 'app/services/notification.service';
 })
 export class NavbarComponent implements OnInit {
   isHidden = true;
-  notifications = [];
+  notifications: Notification[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -32,7 +33,6 @@ export class NavbarComponent implements OnInit {
       });
 
       this.notificationService.getNotifications().subscribe((res: any) => {
-        console.log(res);
         this.notifications = res;
         this.getNotificationsCount();
       }, (res) => {
@@ -46,12 +46,8 @@ export class NavbarComponent implements OnInit {
   }
 
   getNotificationsCount() {
-    return this.notifications.filter((elem) => {
+    return this.notifications.filter((elem: Notification) => {
       return !elem.readed;
     }).length;
-  }
-
-  showNotifications() {
-    
   }
 }

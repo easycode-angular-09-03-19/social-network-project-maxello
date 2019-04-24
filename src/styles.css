@@ -16,12 +16,13 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
-app-challenge-card {
-  width: 100%;
-  margin: 0 15px;
+.mat-menu-content {
+  width: 280px;
+  max-height: 310px;
 }
-mat-grid-list {
-  margin: 0 -15px;
+.mat-list-item {
+  margin-bottom: 15px;
 }
+
 
 

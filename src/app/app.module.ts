@@ -10,6 +10,8 @@ import { NavbarComponent } from './common/components/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToastrModule } from 'ngx-toastr';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     }),
     MatToolbarModule,
     MatButtonModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
